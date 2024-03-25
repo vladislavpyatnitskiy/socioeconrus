@@ -25,50 +25,46 @@ bar.plt.soc.age.gender <- function(x){ # Bar plot of gender age groups
                                              c(sprintf("%s %s", df[n,1],
                                                        colnames(df)[3]),
                                                as.numeric(df[n,3])))) }
-  
   age.groups <- df.plt[,1] # names for groups
   
-  df.plt <- as.numeric(df.plt[,2]) # Make numeric format
+  df.bar <- as.numeric(df.plt[,2]) # Make numeric format
   
-  names(df.plt) <- age.groups # Put names for age and gender groups
+  names(df.bar) <- age.groups # Put names for age and gender groups
   
-  df.plt <- sort(df.plt, decreasing = T) # Sort in a descending way
+  df.bar <- sort(df.bar, decreasing = T) # Sort in a descending way
   
-  # Colours
-  colors37 = c("#466791","#60bf37","#953ada","#4fbe6c","#ce49d3","#a7b43d",
-               "#5a51dc","#d49f36","#552095","#507f2d","#db37aa","#84b67c",
-               "#a06fda","#df462a","#5b83db","#c76c2d","#4f49a3","#82702d",
-               "#dd6bbb","#334c22","#d83979","#55baad","#dc4555","#62aad3",
-               "#8c3025","#417d61","#862977","#bba672","#403367","#da8a6d",
-               "#a79cd4","#71482c","#c689d0","#6b2940","#d593a7","#895c8b",
-               "#bd5975")
+  m <- round(max(df.bar), 0) + 1 # Set Maximum value for y - axis
   
-  df.plt <- df.plt / (10 ^ (nchar(m) - 1)) # Divide by million
+  df.bar <- df.bar / (10 ^ (nchar(m) - 1)) # Divide by million
   
-  m <- round(max(df.plt), 0) + 1 # Set Maximum value for y - axis
+  col.df <- NULL # Create set of colours for bar plot
   
-  bar.plt.script <- barplot(df.plt,
-                            names.arg = names(df.plt),
+  for (n in 1:length(df.bar)){ if (isTRUE(grepl("F", names(df.bar)[n]))){
+      
+      col.df <- c(col.df, "magenta") } else { col.df <- c(col.df, "blue") } }
+  
+  bar.plt.script <- barplot(df.bar,
+                            names.arg = names(df.bar),
                             las = 2,
-                            col = colors37,
-                            main = "Distribution of Population by Age & Gender",
+                            col = col.df,
+                            main = "Population by Age & Gender Groups",
                             ylab = "Number of People in millions", 
-                            ylim = c(0, m), 
+                            ylim = c(0, m / (10 ^ (nchar(m) - 1)) + 1), 
                             xpd = T)
   
   abline(v = bar.plt.script, col = "grey", lty = 3) # Vertical lines
   abline(h = seq(0, m, .5), col = "grey", lty = 3) # Horizontal lines
-  abline(h = mean(df.plt), col = "red", lwd = 3) # Mean percentage line
-  abline(h = median(df.plt), col = "green", lwd = 3) # Median percentage line
+  abline(h = mean(df.bar), col = "red", lwd = 3) # Mean percentage line
+  abline(h = median(df.bar), col = "green", lwd = 3) # Median percentage line
   
-  axis(side = 2, at = seq(0.5, m, 1), las = 1) # Set axes
-  axis(side = 4, at = seq(0, m, 0.5), las = 1)
+  axis(side=2, at = seq(0.5, m / (10^(nchar(m) - 1)) + 1, 1), las=1) # Set axes
+  axis(side=4, at = seq(0, m / (10^(nchar(m) - 1)) + 1, 0.5), las=1)
   
-  par(mar = c(8, 5, 3, 5)) # Define borders of the plot
+  par(mar = c(10, 5, 3, 5)) # Define borders of the plot
   
-  legend(x = "bottom", inset = c(0, -1.12), cex = .85, bty = "n", horiz = T,
-         legend = c((sprintf("Mean: %s", round(mean(df.plt), 2))),
-                    sprintf("Median: %s", round(median(df.plt), 2))),
+  legend(x = "bottom", inset = c(0, -0.7), cex = .85, bty = "n", horiz = T,
+         legend = c((sprintf("Mean: %s", round(mean(df.bar), 2))),
+                    sprintf("Median: %s", round(median(df.bar), 2))),
          col = c("red", "green"), xpd = T, pch = 15)
   
   box() # Box
