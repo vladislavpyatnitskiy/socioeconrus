@@ -1,14 +1,16 @@
-bar.plt.soc <- function(x){ # Bar Plot of Population Income
+bar.plt.soc <- function(x){ # Bar Plot of Population's Monthly Income
   
   df <- as.numeric(x[,3]) # Numeric values
   
-  m <- max(df) # Set maximum value
+  m <- max(df) # Set maximum and minimum values
+  mn <- min(df)
   
   names(df) <- x[,1] # Give region names
   
   df <- sort(df, decreasing = T) # Sort in a descending way
   
   # Calculate ceiling value for axes
+  mn <- trunc(round(mn)/10^(nchar(round(mn)) - 1)) * 10^(nchar(round(mn)) - 1)
   m <- ceiling(round(m) / 10^(nchar(round(m)) - 1)) * 10^(nchar(round(m)) - 1)
   
   # Colours
@@ -21,30 +23,25 @@ bar.plt.soc <- function(x){ # Bar Plot of Population Income
                "#bd5975")
   
   # Plot script
-  bar.plt.script <- barplot(df,
-                            names.arg = names(df),
-                            las = 2,
-                            col = colors37,
-                            main = "Russian Regions by Income",
-                            ylab = "Income (GDP per Capita in $US)",
-                            ylim = c(0, m))
+  plt.script <- barplot(df, names.arg = names(df), las = 2, col = colors37,
+                        main="Russian Regions by Montly GDP per Capita in $US",
+                        ylim = c(mn, m), xpd = F)
   
   par(mar = c(10, 4, 3, 4)) # Define borders of the plot
   
-  p.seq <- seq(0, m, m / 8) # Set axes values
+  p.seq <- seq(mn, m, 100) # Set axes values
   
-  for (n in p.seq){ abline(h = n, col ="grey",lty = 3) } # Put horiz lines
-  abline(v = bar.plt.script, col ="grey",lty = 3) # Put vertical lines
+  for (n in p.seq){ abline(h = n, col = "grey", lty=3) } # Put horizontal lines
+  abline(v = plt.script, col = "grey",lty = 3) # Put vertical lines
   abline(h = mean(df), col = "red", lwd = 3) # Mean percentage line
   abline(h = median(df), col = "green", lwd = 3) # Median percentage line
   
-  # Mean and median legend
-  legend("topright", legend = c((sprintf("Mean: $%s", round(mean(df),2))),
-                                sprintf("Median: $%s", round(median(df),2))),
-         fill = c("red", "green"), cex = .8, bty = "n")
+  legend(x = "bottom", inset = c(0, -0.57), cex = .85, bty = "n", horiz = T,
+         legend = c((sprintf("Mean: $%s", round(mean(df), 2))),
+                    sprintf("Median: $%s", round(median(df), 2))),
+         col = c("red", "green"), xpd = T, pch = 15)
   
-  axis(side = 2, at = p.seq, las = 1) # Set axes
-  axis(side = 4, at = p.seq, las = 1)
+  for (n in 1:2){ axis(side = 2 * n, at = p.seq, las = 1) } # Set y-axes
   
   box() # Put borders
 }
