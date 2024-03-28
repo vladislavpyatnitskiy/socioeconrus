@@ -2,7 +2,9 @@ library("ggplot2") # Library
 
 pyramid.plt.ru <- function(x){ # Population Pyramid of Russia
   
-  y <- read.csv2(file = url(x)) # Download CSV file from website
+  y <- sprintf("https://www.populationpyramid.net/api/pp/643/%s/?csv=true", x)
+  
+  y <- read.csv2(file = url(y)) # Download CSV file from website
   
   df <- NULL # name for data frame
   
@@ -27,7 +29,7 @@ pyramid.plt.ru <- function(x){ # Population Pyramid of Russia
   
   colnames(df.plt) <- c("Age", "Gender", "Number", "Percent") # Column names
   
-  # Make age factor so it woill not be sorted accroding to numbers
+  # Make age factor so it woill not be sorted according to numbers
   df.plt$Age <- factor(df.plt$Age, level = unique(df.plt$Age), ordered = F)
   
   df.plt$b <- ifelse(df.plt$Gender == "Male", -1, 1) # Colour column
@@ -38,9 +40,9 @@ pyramid.plt.ru <- function(x){ # Population Pyramid of Russia
   
   ggplot(df.plt) +
     geom_bar(aes(x = Percent, y = Age, fill = Gender), stat = "identity") +
-    labs(title = "Population Pyramid of Russia", x = "Percentage (%)",
-         y = "Age Group") +
+    labs(title = sprintf("Population Pyramid of Russia in %s", x),
+         x = "Percentage (%)", y = "Age Group") +
     scale_x_continuous(breaks = seq(-10, 10, 1)) +
     theme_minimal() + scale_fill_manual(values = c("red4", "steelblue"))
 }
-pyramid.plt.ru("https://www.populationpyramid.net/api/pp/643/2020/?csv=true")
+pyramid.plt.ru("2023")
