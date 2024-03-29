@@ -34,11 +34,14 @@ bar.plt.soc.group.y <- function(x, main = NULL){
   abline(h = median(v), col = "green", lwd = 3) # Median percentage line
   
   # Legend for Mean and Median lines
-  legend("topright", legend=c((sprintf("Mean:    %s years",round(mean(v),2))),
-                              sprintf("Median: %s years", round(median(v),2))),
-         fill = c("red", "green"), cex = .8, bty = "n")
+  legend(x = "bottom", inset = c(0, -.175), cex = .85, bty = "n", horiz = T,
+         legend = c((sprintf("Mean: %s", round(mean(v), 2))),
+                    sprintf("Median: %s", round(median(v), 2))),
+         col = c("red", "green"), xpd = T, pch = 15)
   
-  axis(side = 2, las = 1) # Set up y-axis
+  for (n in 1:2){ axis(side = 2 * n, at = p.seq, las = 1) } # Set up y-axis
+  
+  par(mar = c(4, 4, 4, 4)) # Define borders of the plot
   
   box() # Put Bar Plot into box
 }
