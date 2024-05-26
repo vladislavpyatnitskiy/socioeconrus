@@ -10,6 +10,8 @@ _________________________________
 
 ### Bubble Plot of Income and Life Expectancy by Regions
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Russia%20Bubble%20Plot.png?raw=true)
+
+Looking at this bubble plot, you may notice that there is no linear relationship between income and life expectancy in Russia. The reason is due to some regions: for example, Causasian regions show high life expectancy at lower incomes whereas Siberian, Ural and Far Eastern regions experience opposite situation with higher incomes and lower life expectancies. When reducing these regions from our data set, we will see ordinary linear relationship where the more regions earn the longer they live.
 _________________________________
 
 ## Population
