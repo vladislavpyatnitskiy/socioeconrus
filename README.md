@@ -140,11 +140,13 @@ _________________________________
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Pie%20Plot%20of%20Russia's%20Population%20by%20Age%20Group%20and%20Gender.png?raw=true)
 #### Fig. 31. Nested Pie Plot of Russia's Population by Age and Gender in Portions
 _________________________________
-
+![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Stacked%20Bar%20Plot%20by%20Gender.png?raw=true)
+#### Fig. 32. Stacked Bar Plot of Population by Gender Portions
+_________________________________
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Histogram%20of%20Population%20by%20Age%20&%20Gender.png?raw=true)
-#### Fig. 32. Histogram of Russia's Population by Age and Gender
+#### Fig. 33. Histogram of Russia's Population by Age and Gender
 _________________________________
 
 ## Comparison with Post Soviet Countries
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Bubble%20Plot%20of%20Post%20Soviet%20Countries%20by%20Life%20Expectancy%20and%20Fertility.png?raw=true)
-#### Fig. 32. Bubble Plot of Post Soviet Union's Countries by Life Expectancy and Fertility Rate
+#### Fig. 34. Bubble Plot of Post Soviet Union's Countries by Life Expectancy and Fertility Rate
