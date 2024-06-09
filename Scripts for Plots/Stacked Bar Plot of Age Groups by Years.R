@@ -1,6 +1,6 @@
 lapply(c("ggplot2"), require, character.only = T) # Libraries
 
-stack.bar.plt.pop.age <- function(x, c){ #
+stack.bar.plt.pop.age <- function(x, c, position = NULL){ #
   
   y <- as.character(seq(1950, 2050, 5)) # list with years
   
@@ -47,7 +47,7 @@ stack.bar.plt.pop.age <- function(x, c){ #
   
   df.plt$Age <- factor(df.plt$Age, level = unique(df.plt$Age), ordered = F)
   
-  df.plt[,3] <- as.numeric(df.plt[,3]) # Change column format to numeric
+  df.plt[,3] <- as.numeric(df.plt[,3]) / 10^6 # Change column format to numeric
   
   C = c("#466791","#60bf37","#953ada","#4fbe6c","#ce49d3","#a7b43d","#5a51dc",
         "#d49f36","#552095","#507f2d","#db37aa","#84b67c","#a06fda","#df462a",
@@ -55,6 +55,8 @@ stack.bar.plt.pop.age <- function(x, c){ #
         "#55baad","#dc4555","#62aad3","#8c3025","#417d61","#862977","#bba672",
         "#403367","#da8a6d","#a79cd4","#71482c","#c689d0","#6b2940","#d593a7",
         "#895c8b","#bd5975") # Colours
+  
+  if (is.null(position)){
   
   ggplot(df.plt, aes(x = Year, y = Population, fill = Age)) + theme_minimal() +
     geom_bar(position = "fill", stat = "identity") + 
@@ -64,5 +66,12 @@ stack.bar.plt.pop.age <- function(x, c){ #
     scale_y_continuous(breaks = seq(0, 1, 0.05),
                        sec.axis = ggplot2::sec_axis(~.,
                                                     breaks = seq(0,1,.05))) 
+  } else {
+      
+    ggplot(df.plt, aes(x = Year, y = Population, fill = Age))+theme_minimal() +
+      geom_bar(position = "stack", stat = "identity") + 
+      labs(title = sprintf("%s's Population Dynamics by Age Groups", c),
+           x = "Years", y = "Population in millions", fill = "Age Groups") +
+      scale_fill_manual(values=C) }
 }
-stack.bar.plt.pop.age("643", c = "Russia") # Test
+stack.bar.plt.pop.age("643", c = "Russia", position = "stack") # Test
