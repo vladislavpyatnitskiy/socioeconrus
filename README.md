@@ -52,101 +52,105 @@ _________________________________
 #### Fig. 10. Stacked Bar Plot of Age Group by Years
 _________________________________
 
+![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Stacked%20Bar%20Plot%20in%20millions.png?raw=true)
+#### Fig. 11. Stacked Bar Plot of Age Group by Years in nominal values
+_________________________________
+
 ## Life Expectancy
 _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Bar%20Plot%20of%20Life%20Expectancy%20across%20regions.png?raw=true)
-#### Fig. 11. Bar Plot of Life Expectancy across Regions
+#### Fig. 12. Bar Plot of Life Expectancy across Regions
 _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Bar%20Plot%20of%20Life%20Expectancy%20across%20Federal%20Districts.png?raw=true)
-#### Fig. 12. Bar Plot of Life Expectancy across Federal Districts
+#### Fig. 13. Bar Plot of Life Expectancy across Federal Districts
 _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Scatter%20Plot%20of%20Regions%20by%20Population%20and%20Life%20Expectancy.png?raw=true)
-#### Fig. 13. Scatter Plot of Regions by Population and Life Expectancy
+#### Fig. 14. Scatter Plot of Regions by Population and Life Expectancy
 _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Pie%20Plot%20of%20Russia's%20Age%20Portions.png?raw=true)
-#### Fig. 14. Pie Plot of Russia's Age Portions
+#### Fig. 15. Pie Plot of Russia's Age Portions
 _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Histogram%20of%20Life%20Expectancies.png?raw=true)
-#### Fig. 15. Histogram of Life Expectancy by Regions
+#### Fig. 16. Histogram of Life Expectancy by Regions
 _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Bar%20Plot%20of%20Life%20Expectancy%20Difference%20between%20genders.png?raw=true)
-#### Fig. 16. Bar Plot of Life Expectancy Difference between Females and Males
+#### Fig. 17. Bar Plot of Life Expectancy Difference between Females and Males
 _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Bar%20Plot%20of%20Life%20Expectanct%20Difference%20across%20Districts.png?raw=true)
-#### Fig. 17. Bar Plot of Life Expectancy Difference between Females and Males by Federal Districts
+#### Fig. 18. Bar Plot of Life Expectancy Difference between Females and Males by Federal Districts
 _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Histogram%20of%20Life%20Expectancy%20Difference%20by%20Gender.png?raw=true)
-#### Fig. 18. Histogram of Life Expectancy Difference between Females and Males
+#### Fig. 19. Histogram of Life Expectancy Difference between Females and Males
 _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Scatter%20Plot%20of%20Population%20and%20Difference%20in%20Life%20Exp.png?raw=true)
-#### Fig. 19. Scatter Plot of Population and Life Expectancy Difference between Females and Males
+#### Fig. 20. Scatter Plot of Population and Life Expectancy Difference between Females and Males
 _________________________________
 
 ## Fertility
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Bar%20Plot%20of%20Fertility%20Rate.png?raw=true)
-#### Fig. 20. Bar Plot of Fertility Rate
+#### Fig. 21. Bar Plot of Fertility Rate
 _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Bar%20Plot%20of%20Fertility%20Rates%20by%20Districts.png?raw=true)
-#### Fig. 21. Bar Plot of Fertility Rate by Districts
+#### Fig. 22. Bar Plot of Fertility Rate by Districts
 _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Bubble%20Plot%20of%20Regions%20by%20Income%20and%20Fertility%20Rate.png?raw=true)
-#### Fig. 22. Bubble Plot of Regions by Income and Fertility Rate
+#### Fig. 23. Bubble Plot of Regions by Income and Fertility Rate
 _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Histogram%20of%20Fertility%20Rate%20by%20Regions.png?raw=true)
-#### Fig. 23. Histogram of Fertility Rate
+#### Fig. 24. Histogram of Fertility Rate
 _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Scatter%20Plot%20by%20Fertility%20and%20Difference%20in%20Life%20Exp.png?raw=true)
-#### Fig. 24. Scatter Plot of Life Expectnacy Difference between Females and Males and Fertility Rate
+#### Fig. 25. Scatter Plot of Life Expectnacy Difference between Females and Males and Fertility Rate
 _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Bubble%20plot%203D%20Fertility%20Rate.png?raw=true)
-#### Fig. 25. 3D Bubble Plot of Life Expectnacy Difference between Females, Income and Males and Fertility Rate
+#### Fig. 26. 3D Bubble Plot of Life Expectnacy Difference between Females, Income and Males and Fertility Rate
 _________________________________
 
 ## Gender 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Stacked%20Bar%20Plot%20of%20Russia's%20Population.png?raw=true)
-#### Fig. 26. Stacked Bar Plot of Russia's Population by Gender
+#### Fig. 27. Stacked Bar Plot of Russia's Population by Gender
 _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Stacked%20Bar%20Plot%20of%20Russia's%20Population%20(%25).png?raw=true)
-#### Fig. 27. Stacked Bar Plot of Russia's Population by Gender in Portions
+#### Fig. 28. Stacked Bar Plot of Russia's Population by Gender in Portions
 _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Bar%20Plot%20by%20Gender%20and%20Age.png?raw=true)
-#### Fig. 28. Bar Plot of Russia's Population by Gender and Age
+#### Fig. 29. Bar Plot of Russia's Population by Gender and Age
 _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Pie%20Plot%20of%20Russia's%20Male%20Population%20by%20Age%20Group.png?raw=true)
-#### Fig. 29. Pie Plot of Russia's Male Population by Gender in Portions
+#### Fig. 30. Pie Plot of Russia's Male Population by Gender in Portions
 _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Pie%20Plot%20of%20Russia's%20Female%20Population%20by%20Age%20Group.png?raw=true)
-#### Fig. 30. Pie Plot of Russia's Female Population by Gender in Portions
+#### Fig. 31. Pie Plot of Russia's Female Population by Gender in Portions
 _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Pie%20Plot%20of%20Russia's%20Population%20by%20Age%20Group%20and%20Gender.png?raw=true)
-#### Fig. 31. Nested Pie Plot of Russia's Population by Age and Gender in Portions
+#### Fig. 32. Nested Pie Plot of Russia's Population by Age and Gender in Portions
 _________________________________
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Stacked%20Bar%20Plot%20by%20Gender.png?raw=true)
-#### Fig. 32. Stacked Bar Plot of Population by Gender Portions
+#### Fig. 33. Stacked Bar Plot of Population by Gender Portions
 _________________________________
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Histogram%20of%20Population%20by%20Age%20&%20Gender.png?raw=true)
-#### Fig. 33. Histogram of Russia's Population by Age and Gender
+#### Fig. 34. Histogram of Russia's Population by Age and Gender
 _________________________________
 
 ## Comparison with Post Soviet Countries
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Bubble%20Plot%20of%20Post%20Soviet%20Countries%20by%20Life%20Expectancy%20and%20Fertility.png?raw=true)
-#### Fig. 34. Bubble Plot of Post Soviet Union's Countries by Life Expectancy and Fertility Rate
+#### Fig. 35. Bubble Plot of Post Soviet Union's Countries by Life Expectancy and Fertility Rate
