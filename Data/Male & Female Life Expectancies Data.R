@@ -2,20 +2,13 @@ library("rvest") # library
 
 dif.life.exp.ru <- function(x){ # Male & Female Life Expectancies in Russia
   
-  s <- read_html(paste("https://en.wikipedia.org/wiki/", x, sep = ""))
+  y <- read_html(paste("https://en.wikipedia.org/wiki/", x, sep = "")) %>%
+    html_nodes('table') %>% .[[1]] %>% html_nodes('tr') %>%
+    html_nodes('td') %>% html_text()
   
-  s.wiki <- s %>% html_nodes('table') %>% .[[1]] -> tab # Assign Table 
-  
-  y <- tab %>% html_nodes('tr') %>% html_nodes('td') %>% html_text()
-  
-  v <- NULL # Get data of regions with life expectancies
-  
-  for (n in 1:(length(y) / 20)){ d <- y[1 + n * 20] # Region names
-  
-    v <- rbind.data.frame(v, cbind(d, cbind(as.numeric(y[3 + n * 20]),
-                                            as.numeric(y[4 + n * 20])))) }
-  
-  v <- v[apply(v, 1, function(x) all(!is.na(x))),] # Get rid of NA
+  v <- data.frame(y[seq(from = 1, to = length(y), by = 20)], # Region name
+                  y[seq(from = 3, to = length(y), by = 20)],
+                  y[seq(from = 4, to = length(y), by = 20)]) # Life Expectancy
   
   colnames(v) <- c("Region", "Male", "Female") # Column names
   
