@@ -12,16 +12,23 @@ dif.life.exp.ru <- function(x){ # Male & Female Life Expectancies in Russia
   
   colnames(v) <- c("Region", "Male", "Female") # Column names
   
-  if (isTRUE(any(v[,1] == "Sakha (Yakutia)"))){ # Rename some serions
+  v[v$Region == "Moscow",][,1] <- "Moscow City" # Distinguish city from oblast
+  
+  for (n in 1:nrow(v)) if (isTRUE(grepl("Oblast", v[n,1]))){ # Reduce "Oblast"
     
-    v[v$Region == "Khanty-Mansi AO(Tyumen Oblast)",][,1] <- "Khanty-Mansi AO" 
-    v[v$Region == "Sakha (Yakutia)",][,1] <- "Sakha" 
-    v[v$Region == "Arkhangelsk Oblast(except AO)",][,1] <- "Arkhangelsk Oblast"
-    v[v$Region == "Yamalo-Nenets AO(Tyumen Oblast)",][,1] <- "Yamalo-Nenets AO"
-    v[v$Region == "Jewish Autonomous Oblast",][,1] <- "Jewish AO" 
-    v[v$Region == "Nenets AO(Arkhangelsk Oblast)",][,1] <- "Nenets AO" 
-    v[v$Region == "Tyumen Oblast(except two AO)",][,1] <- "Tyumen Oblast" 
-  }
+    O <- read.fwf(textConnection(v[n,1]), widths = c(nchar(v[n,1]) - 7, 1),
+                  colClasses = "character")[,1] 
+    
+    v[v$Region == v[n,1],][,1] <- O } 
+    
+  v[v$Region == "Khanty-Mansi AO(Tyumen ",][,1] <- "Khanty-Mansi AO" 
+  v[v$Region == "Sakha (Yakutia)",][,1] <- "Sakha" 
+  v[v$Region == "Arkhangelsk Oblast(exc",][,1] <- "Arkhangelsk Oblast"
+  v[v$Region == "Yamalo-Nenets AO(Tyumen ",][,1] <- "Yamalo-Nenets AO"
+  v[v$Region == "Jewish Autonomous",][,1] <- "Jewish AO" 
+  v[v$Region == "Nenets AO(Arkhangelsk ",][,1] <- "Nenets AO" 
+  v[v$Region == "Tyumen Oblast(except ",][,1] <- "Tyumen Oblast" 
+  
   v # Display
 }
 dif.life.exp.ru("List_of_federal_subjects_of_Russia_by_life_expectancy") # Test
