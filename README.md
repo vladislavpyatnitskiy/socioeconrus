@@ -69,6 +69,26 @@ _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Scatter%20Plot%20of%20Regions%20by%20Population%20and%20Life%20Expectancy.png?raw=true)
 #### Fig. 14. Scatter Plot of Regions by Population and Life Expectancy
+
+```
+Call:
+lm(formula = `Life Expectancy` ~ Population, data = df.new.rus)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.1895 -1.0596 -0.4618  0.5349 11.3026 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 6.904e+01  3.426e-01 201.535   <2e-16 ***
+Population  3.416e-07  1.349e-07   2.533   0.0135 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.223 on 73 degrees of freedom
+Multiple R-squared:  0.0808,	Adjusted R-squared:  0.06821 
+F-statistic: 6.417 on 1 and 73 DF,  p-value: 0.01345
+```
 _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Pie%20Plot%20of%20Russia's%20Age%20Portions.png?raw=true)
@@ -93,6 +113,25 @@ _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Scatter%20Plot%20of%20Population%20and%20Difference%20in%20Life%20Exp.png?raw=true)
 #### Fig. 20. Scatter Plot of Population and Life Expectancy Difference between Females and Males
+```
+Call:
+lm(formula = Difference ~ Population, data = df.new.rus)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.4040 -0.5194  0.3089  0.6438  1.9079 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  9.368e+00  1.822e-01  51.419   <2e-16 ***
+Population  -1.416e-07  7.172e-08  -1.974   0.0521 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.182 on 73 degrees of freedom
+Multiple R-squared:  0.05069,	Adjusted R-squared:  0.03769 
+F-statistic: 3.898 on 1 and 73 DF,  p-value: 0.05213
+```
 _________________________________
 
 ## Fertility
@@ -106,6 +145,25 @@ _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Bubble%20Plot%20of%20Regions%20by%20Income%20and%20Fertility%20Rate.png?raw=true)
 #### Fig. 23. Bubble Plot of Regions by Income and Fertility Rate
+```
+Call:
+lm(formula = `Fertility Rate` ~ Income, data = df.new.rus)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.57911 -0.16194 -0.02601  0.10487  1.36567 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 1.2707604  0.0759405  16.734   <2e-16 ***
+Income      0.0002861  0.0001121   2.552   0.0128 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.275 on 73 degrees of freedom
+Multiple R-squared:  0.0819,	Adjusted R-squared:  0.06932 
+F-statistic: 6.512 on 1 and 73 DF,  p-value: 0.01281
+```
 _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Histogram%20of%20Fertility%20Rate%20by%20Regions.png?raw=true)
@@ -114,10 +172,49 @@ _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Scatter%20Plot%20by%20Fertility%20and%20Difference%20in%20Life%20Exp.png?raw=true)
 #### Fig. 25. Scatter Plot of Life Expectnacy Difference between Females and Males and Fertility Rate
+```
+Call:
+lm(formula = `Fertility Rate` ~ Difference, data = df.new.rus)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.54230 -0.18179 -0.01519  0.12357  0.97884 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  2.27520    0.23537   9.667 1.06e-14 ***
+Difference  -0.09074    0.02556  -3.550 0.000679 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.265 on 73 degrees of freedom
+Multiple R-squared:  0.1472,	Adjusted R-squared:  0.1355 
+F-statistic:  12.6 on 1 and 73 DF,  p-value: 0.0006791
+```
 _________________________________
 
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Bubble%20plot%203D%20Fertility%20Rate.png?raw=true)
 #### Fig. 26. 3D Bubble Plot of Life Expectnacy Difference between Females, Income and Males and Fertility Rate
+```
+Call:
+lm(formula = `Fertility Rate` ~ Income + Difference, data = df.new.rus)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.54541 -0.15263 -0.00404  0.13997  0.98702 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  2.0857680  0.2377793   8.772 5.56e-13 ***
+Income       0.0002722  0.0001041   2.616 0.010846 *  
+Difference  -0.0883285  0.0246137  -3.589 0.000603 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.255 on 72 degrees of freedom
+Multiple R-squared:  0.2212,	Adjusted R-squared:  0.1996 
+F-statistic: 10.22 on 2 and 72 DF,  p-value: 0.0001234
+```
 _________________________________
 
 ## Gender 
