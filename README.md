@@ -1,4 +1,8 @@
 # Socio-Economics of Russia
+
+[![R](https://img.shields.io/badge/R-4.x-blue.svg)](https://www.r-project.org/)
+![GitHub last commit](https://img.shields.io/github/last-commit/vladislavpyatnitskiy/socioeconrus.svg)
+
 ![](https://github.com/vladislavpyatnitskiy/socioeconrus/blob/main/Plots/Population%20Pyramid.png?raw=true)
 #### Fig. 1. Population Pyramid of Russia
 _________________________________
