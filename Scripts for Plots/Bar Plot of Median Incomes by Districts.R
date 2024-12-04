@@ -1,4 +1,3 @@
-# Median Income across Federal Districts
 bar.plt.soc.group.i <- function(x){ # Median Income across Federal Districts
   
   pct <- data.frame(x[,2], as.numeric(x[,3])) # Create Separate Data Frame
@@ -32,18 +31,19 @@ bar.plt.soc.group.i <- function(x){ # Median Income across Federal Districts
   B <- barplot(v, las = 1, ylim = c(min(v) - 10, max(v) + 10), xpd = F, col = C,
                main = "Median Incomes across Federal Districts") # Plot
   
-  for (n in p.seq){ abline(h = n, col ="grey",lty = 3) } # Put horiz lines
-  abline(v = B, col ="grey",lty = 3) # Put vertical lines
-  abline(h = mean(v), col = "red", lwd = 3) # Mean percentage line
-  abline(h = median(v), col = "green", lwd = 3) # Median percentage line
+  for (n in p.seq){ abline(h = n, col="grey", lty=3) } # Put horizontal lines
+  abline(v = B, col = "grey", lty = 3) # Put vertical lines
   
-  # Legend for Mean and Median lines
-  legend("bottom",xpd=T,legend=c((sprintf("Mean: US$ %s",round(mean(v),2))),
-                                 sprintf("Median: US$ %s", round(median(v),2))),
-         col=c("red","green"),pch=15,cex=.8,bty="n",horiz=T,inset=c(0,-.165)) 
+  cols = c("red", "green") # Colours
+  vals = list(list(mean(v), median(v)), cols) # Mean & Median lines
+  
+  legend("bottom",xpd=T, col=cols,pch=15,cex=.8,bty="n",horiz=T,inset=c(0,-.18),
+         legend=c((sprintf("Mean: US$ %s",round(mean(v),2))),
+                  sprintf("Median: US$ %s", round(median(v),2)))) # Legend
   
   par(mar = c(4, 4, 4, 4)) # Define borders of the plot
   
+  for (n in 1:2){ abline(h = vals[[1]][[n]], col = vals[[2]][n], lwd = 3) }
   for (n in 1:2){ axis(side = 2 * n, at = p.seq, las = 1) } # Axes
   
   box() # Put Bar Plot into box
