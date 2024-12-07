@@ -2,17 +2,14 @@ library("rvest") # Library
 
 fertility.rate.ru <- function(x){ # Fertility Data of Russia from Wikipedia
   
-  s <- read_html(paste("https://en.wikipedia.org/wiki/", x, sep = ""))
-  
-  s.wiki <- s %>% html_nodes('table') %>% .[[1]] -> tab # Assign Table 
-  
-  y <- tab %>% html_nodes('tr') %>% html_nodes('td') %>% html_text()
+  y <- read_html(paste("https://en.wikipedia.org/wiki/", x, sep = "")) %>%
+    html_nodes('table') %>% .[[1]] %>% html_nodes('tr') %>%
+    html_nodes('td') %>% html_text()
   
   # Federal Districts
-  l <- c("Central Federal District", "Northwestern Federal District",
-         "Southern Federal District", "North Caucasian Federal District",
-         "Volga Federal District", "Ural Federal District",
-         "Siberian Federal District", "Far Eastern Federal District")
+  l <- sprintf("%s Federal District", c("Central", "Northwestern", "Southern",
+                                        "North Caucasian", "Volga", "Ural",
+                                        "Siberian", "Far Eastern"))
   
   D <- NULL # Get positions of Federal Districts in vector
   
@@ -23,10 +20,10 @@ fertility.rate.ru <- function(x){ # Fertility Data of Russia from Wikipedia
   R <- NULL # Data Frame with Regions, Federal Districts and Fertility Rate
   
   for (n in 1:nrow(C)){ for (m in seq(C[n,1],C[n,2],by=19)){ while (m!=C[n,2]){
-        
+    
         r <- read.fwf(textConnection(y[m]), widths = c(nchar(1), nchar(y[m])),
                       colClasses = "character")[2]
-      
+        
         R <- rbind.data.frame(R,
                               cbind(r,
                                     read.fwf(textConnection(l[n]),
@@ -40,26 +37,21 @@ fertility.rate.ru <- function(x){ # Fertility Data of Russia from Wikipedia
   
   R[R$Region == "Moscow",][,1] <- "Moscow City" # Distinguish city from oblast
   
-  # Reduce "Oblast" from Region names
-  for (n in 1:nrow(R)) if (isTRUE(grepl("Oblast", R[n,1]))){ 
-      
+  for (n in 1:nrow(R)) if (isTRUE(grepl("Oblast", R[n,1]))){ # Reduce "Oblast"
+    
       O <- read.fwf(textConnection(R[n,1]), widths = c(nchar(R[n,1]) - 7, 1),
                     colClasses = "character")[,1] 
       
-      R[R$Region == R[n,1],][,1] <- O } 
+      R[R$Region == R[n,1],][,1] <- O } # Reform some Regions' names as well
+    
+  s <- list(c("Komi Republic","Nenets Autonomous Okrug","North Ossetia–Alania",
+              "Yugra", "Yamalo-Nenets Autonomous Okrug", "Altai Republic",
+              "Yakutia", "Jewish Autonomous"),
+            c("Komi", "Nenets AO", "North Ossetia", "Khanty-Mansi AO",
+              "Yamalo-Nenets AO", "Altai", "Sakha", "Jewish AO"))
   
-  # Replace region names to these ones
-  R[R$Region == "Komi Republic",][,1] <- "Komi"
-  R[R$Region == "Nenets Autonomous Okrug",][,1] <- "Nenets AO"
-  R[R$Region == "North Ossetia–Alania",][,1] <- "North Ossetia"
-  R[R$Region == "Yugra",][,1] <- "Khanty-Mansi AO"
-  R[R$Region == "YaNAO",][,1] <- "Yamalo-Nenets AO"
-  R[R$Region == "Altai Republic",][,1] <- "Altai"
-  R[R$Region == "Yakutia",][,1] <- "Sakha"
-  R[R$Region == "Jewish Autonomous",][,1] <- "Jewish AO"
+  for (n in 1:length(s)[[1]]){ R[R$Region == s[[1]][n],][,1] <- s[[2]][n] }
   
-  R <- R[-(nrow(R) - 2):-nrow(R),] # Reduce excessive rows
-  
-  R # Display
+  R[-(nrow(R) - 2):-nrow(R),] # Reduce excessive rows and display data frame
 }
 fertility.rate.ru("List_of_federal_subjects_of_Russia_by_total_fertility_rate")
