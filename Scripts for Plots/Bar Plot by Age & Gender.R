@@ -1,72 +1,68 @@
-bar.plt.soc.age.gender <- function(x){ # Bar plot of gender age groups
-    
-  # Download CSV file from website
-  f <- read.csv2(file = url(sprintf("https://www.populationpyramid.net/%s",x))) 
-    
-  df <- NULL # name for data frame
-    
+bar.plt.soc.age.gender <- function(C, Y){ # Bar plot of gender age groups
+  
+  f <- sprintf("https://www.populationpyramid.net/api/pp/%s/%s/?csv=true", C, Y)
+  
+  f <- read.csv2(file = url(f)) # Download CSV file to get data
+  
+  d <- NULL # name for data frame
+  
   for (n in 1:nrow(f)){ # Divide column into three
-      
-    df <- rbind.data.frame(df, unlist(strsplit(as.character(f[n,]), "\\,"))) }
     
-  colnames(df) <- c("Age", "Male", "Female") # Column names
+    d <- rbind.data.frame(d, unlist(strsplit(as.character(f[n,]), "\\,"))) }
+  
+  colnames(d) <- c("Age", "Male", "Female") # Column names
+  
+  ages <- as.factor(d[,1]) # Change data type of first column to factor
+  
+  for (n in 2:3){ d[,n] <- as.numeric(d[,n]) } # make columns numeric
+  
+  D <- NULL  
+  
+  for (n in 1:nrow(d)){ # Optimise for ggplot2 format
     
-  ages <- as.factor(df[,1]) # Change data type of first column to factor
+    D <- rbind.data.frame(D, rbind(c(sprintf("%s %s",d[n,1],colnames(d)[2]),
+                                     as.numeric(d[n,2])),
+                                   c(sprintf("%s %s",d[n,1],colnames(d)[3]),
+                                     as.numeric(d[n,3])))) }
+  A <- D[,1] # Age & Gender groups
+  
+  N <- as.numeric(D[,2]) # Make numeric format
+  
+  names(N) <- A # Put names for age and gender groups
+  
+  N <- sort(N, decreasing = T) # Sort in a descending way
+  
+  m <- round(max(N), 0) + 1 # Set Maximum value for y - axis
+  
+  N <- N / (10 ^ (nchar(m) - 1)) # Divide by million
+  
+  J <- NULL # Create set of colours for bar plot
+  
+  for (n in 1:length(N)){ J <- c(J, ifelse(grepl("F", names(N)[n]) == T,
+                                           "magenta", "blue")) }
     
-  for (n in 2:3){ df[,n] <- as.numeric(df[,n]) } # make columns numeric
+  B <- barplot(N, names.arg = names(N), las = 2, col = J, xpd = T, 
+               main = "Population by Age & Gender Groups in millions",
+               ylim = c(0, m / (10 ^ (nchar(m) - 1)) + 1))
   
-  df.plt <- NULL  
+  abline(v = B, col = "grey", lty = 3) # Vertical lines
   
-  for (n in 1:nrow(df)){ # Optimise for ggplot2 format
-    
-    df.plt <- rbind.data.frame(df.plt, rbind(c(sprintf("%s %s", df[n,1],
-                                                       colnames(df)[2]),
-                                               as.numeric(df[n,2])),
-                                             c(sprintf("%s %s", df[n,1],
-                                                       colnames(df)[3]),
-                                               as.numeric(df[n,3])))) }
-  age.groups <- df.plt[,1] # names for groups
-  
-  df.bar <- as.numeric(df.plt[,2]) # Make numeric format
-  
-  names(df.bar) <- age.groups # Put names for age and gender groups
-  
-  df.bar <- sort(df.bar, decreasing = T) # Sort in a descending way
-  
-  m <- round(max(df.bar), 0) + 1 # Set Maximum value for y - axis
-  
-  df.bar <- df.bar / (10 ^ (nchar(m) - 1)) # Divide by million
-  
-  col.df <- NULL # Create set of colours for bar plot
-  
-  for (n in 1:length(df.bar)){ if (isTRUE(grepl("F", names(df.bar)[n]))){
-      
-      col.df <- c(col.df, "magenta") } else { col.df <- c(col.df, "blue") } }
-  
-  bar.plt.script <- barplot(df.bar,
-                            names.arg = names(df.bar),
-                            las = 2,
-                            col = col.df,
-                            main = "Population by Age & Gender Groups",
-                            ylab = "Number of People in millions", 
-                            ylim = c(0, m / (10 ^ (nchar(m) - 1)) + 1), 
-                            xpd = T)
-  
-  abline(v = bar.plt.script, col = "grey", lty = 3) # Vertical lines
-  abline(h = seq(0, m, .5), col = "grey", lty = 3) # Horizontal lines
-  abline(h = mean(df.bar), col = "red", lwd = 3) # Mean percentage line
-  abline(h = median(df.bar), col = "green", lwd = 3) # Median percentage line
-  
+  vals = list(list(mean(N), median(N), seq(0, m, .5)), c("red","green","grey"),
+              c(1, 1, 3), c(3, 3, 1))
+
   axis(side=2, at = seq(0.5, m / (10^(nchar(m) - 1)) + 1, 1), las=1) # Set axes
   axis(side=4, at = seq(0, m / (10^(nchar(m) - 1)) + 1, 0.5), las=1)
   
   par(mar = c(10, 5, 3, 5)) # Define borders of the plot
   
-  legend(x = "bottom", inset = c(0, -0.7), cex = .85, bty = "n", horiz = T,
-         legend = c((sprintf("Mean: %s", round(mean(df.bar), 2))),
-                    sprintf("Median: %s", round(median(df.bar), 2))),
-         col = c("red", "green"), xpd = T, pch = 15)
+  for (n in 1:3){ abline(h = vals[[1]][[n]], col = vals[[2]][n],
+                         lty = vals[[3]][n], lwd = vals[[4]][n]) }
+  
+  legend(x = "bottom", inset = c(0, -0.6), cex = .85, bty = "n", horiz = T, 
+         legend = c((sprintf("Mean: %s", round(vals[[1]][[1]], 2))),
+                    sprintf("Median: %s", round(vals[[1]][[2]], 2))),
+         col = vals[[2]][c(1,2)], xpd = T, pch = 15)
   
   box() # Box
 }
-bar.plt.soc.age.gender("api/pp/643/2020/?csv=true") # Test
+bar.plt.soc.age.gender(C = "643", Y = "2024") # Test
