@@ -5,7 +5,7 @@ bar.plt.soc.group.f <- function(x){ # Fertility Rates by Districts
   colnames(pct) <- c("Federal District", "Fertility Rate") # Column names
   
   # Aggregate life expectancy data to get median values for each district
-  pct <- aggregate(`Fertility Rate` ~ `Federal District`, data=pct, median)
+  pct <- aggregate(`Fertility Rate` ~ `Federal District`, data = pct, median)
   
   v <- pct[,2] # Make a vector
   
@@ -20,23 +20,22 @@ bar.plt.soc.group.f <- function(x){ # Fertility Rates by Districts
   
   v <- sort(v, decreasing = T) # Sort values
   
-  p.seq <- seq(round(min(v), 1), round(max(v),1), by = .1) 
-  
   B <- barplot(v, las = 1, ylim = c(round(min(v),1), round(max(v),1)), xpd = F,
                col=C, main = "Fertility Rate across Federal Districts") # Plot
   
-  for (n in p.seq){ abline(h = n, col ="grey",lty = 3) } # Put horiz lines
-  abline(v = B, col ="grey",lty = 3) # Put vertical lines
+  grid(nx = 1, ny = NULL, col = "grey", lty = 3, lwd = 1) # Horizontal lines
+  abline(v = B, col = "grey", lty = 3) # Vertical lines
   abline(h = mean(v), col = "red", lwd = 3) # Mean percentage line
   abline(h = median(v), col = "green", lwd = 3) # Median percentage line
   
   # Legend for Mean and Median lines
   legend("bottom", xpd = T, legend=c((sprintf("Mean: %s",round(mean(v),2))),
                                      sprintf("Median: %s", round(median(v),2)),
-                                     paste("Reproduction Rate: 2.1")), cex=.8,
-         col=c("red","green","blue"),pch=15,bty="n",horiz=T,inset=c(0,-.165)) 
+                                     paste("Reproduction Rate: 2.1")), cex=.85,
+         col=c("red","green","blue"),pch=15,bty="n",horiz=T,inset=c(0,-.155)) 
   
-  for (n in 1:2){ axis(side = 2 * n, at = p.seq, las = 1) } # Set up y-axes
+  axis(side = 4, las = 2) # Right y-axis
+  
   par(mar = c(4, 4, 4, 4))
   box() # Put Bar Plot into box
 }
