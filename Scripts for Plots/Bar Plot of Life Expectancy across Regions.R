@@ -15,23 +15,22 @@ bar.plt.soc.y <- function(x){ # Life Expectancy across Regions
   
   v <- sort(v, decreasing = T) # Sort values
   
-  p.seq <- seq(round(min(v) - 1), round(max(v) + 1), by = 1) # Values for axes
-  
   B <- barplot(v, las = 2, ylim = c(min(v) - 1, max(v) + 1), xpd = F, col = C,
                main = "Bar Plot of Life Expectancy across Regions") 
   
-  for (n in p.seq){ abline(h = n, col = "grey", lty = 3) } # Horizontal lines
+  grid(nx = 1, ny = NULL, col = "grey", lty = 3, lwd = 1) # Horizontal lines
   abline(v = B, col = "grey", lty = 3) # Put vertical lines
   
   cols = c("red", "green") # Colours
-  vals = list(list(mean(v), median(v)), cols) # Mean, Median & Rep rate
+  vals = list(mean(v), median(v)) # Mean, Median & Rep rate
   
-  legend(x="bottom",inset=c(0, -1.8),cex=.85,bty="n",horiz=T,xpd=T, pch = 15,
-         legend = c((sprintf("Mean: %s", round(vals[[1]][[1]], 2))),
-                    sprintf("Median: %s", round(vals[[1]][[2]], 2))), col=cols)
+  legend(x="bottom",inset=c(0, -0.55),cex=.85,bty="n",horiz=T,xpd=T, pch = 15,
+         legend = c((sprintf("Mean: %s", round(vals[[1]], 2))),
+                    sprintf("Median: %s", round(vals[[2]], 2))), col=cols)
   
-  for (n in 1:2){ abline(h = vals[[1]][[n]], col = vals[[2]][n], lwd = 3) 
-    axis(side=2*n,at=seq(round(max(v),0)+1,from=round(min(v),0)-1,by=1),las=1) }
+  for (n in 1:2){ abline(h = vals[[n]], col = cols[n], lwd = 3) }
+  
+  axis(side = 4, las = 2)
   
   par(mar = c(12, 4.5, 3, 4.5)) # Define borders of the plot
   
