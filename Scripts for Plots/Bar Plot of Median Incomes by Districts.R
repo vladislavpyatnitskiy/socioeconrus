@@ -5,7 +5,7 @@ bar.plt.soc.group.i <- function(x){ # Median Income across Federal Districts
   colnames(pct) <- c("Federal District", "Income") # Column names
   
   # Aggregate Median income data to get median values for each district
-  pct <- aggregate(Income ~ `Federal District`, data=pct, median)
+  pct <- aggregate(Income ~ `Federal District`, data = pct, median)
   
   v <- pct[,2] # Make a vector
   
@@ -20,31 +20,41 @@ bar.plt.soc.group.i <- function(x){ # Median Income across Federal Districts
   
   v <- sort(v, decreasing = T) # Sort values
   
-  mx <- ceiling(round(max(v)) / 10 ^ (nchar(round(max(v))) - 1)) *
-    10 ^ (nchar(round(max(v))) - 1) # Round maximum value up
+  B <- barplot(
+    v,
+    las = 1, 
+    ylim = c(min(v) - 10, max(v) + 10),
+    xpd = F,
+    col = C,
+    main = "Median Incomes across Federal Districts"
+    ) # Plot
   
-  mn <- trunc(round(min(v)) / 10 ^ (nchar(round(min(v))) - 1)) *
-    10 ^ (nchar(round(min(v))) - 1) # Round minimum value up
-  
-  p.seq <- seq(mn, mx, by = 20) # Values for axes
-  
-  B <- barplot(v, las = 1, ylim = c(min(v) - 10, max(v) + 10), xpd = F, col = C,
-               main = "Median Incomes across Federal Districts") # Plot
-  
-  for (n in p.seq){ abline(h = n, col="grey", lty=3) } # Put horizontal lines
+  grid(nx = 1, ny = NULL, col = "grey", lty = 3, lwd = 1) # Horizontal lines
   abline(v = B, col = "grey", lty = 3) # Put vertical lines
   
   cols = c("red", "green") # Colours
-  vals = list(list(mean(v), median(v)), cols) # Mean & Median lines
+  vals = list(mean(v), median(v)) # Mean & Median lines
   
-  legend("bottom",xpd=T, col=cols,pch=15,cex=.8,bty="n",horiz=T,inset=c(0,-.18),
-         legend=c((sprintf("Mean: US$ %s",round(mean(v),2))),
-                  sprintf("Median: US$ %s", round(median(v),2)))) # Legend
+  legend(
+    "bottom",
+    xpd = T,
+    col = cols,
+    pch = 15,
+    cex = .8,
+    horiz = T,
+    inset = c(0, -.18),
+    bty = "n",
+    legend = c(
+      (sprintf("Mean: US$ %s", round(mean(v), 2))),
+      sprintf("Median: US$ %s", round(median(v), 2))
+      )
+    )
   
   par(mar = c(4, 4, 4, 4)) # Define borders of the plot
   
-  for (n in 1:2){ abline(h = vals[[1]][[n]], col = vals[[2]][n], lwd = 3) }
-  for (n in 1:2){ axis(side = 2 * n, at = p.seq, las = 1) } # Axes
+  for (n in 1:2){ abline(h = vals[[n]], col = cols[n], lwd = 3) }
+  
+  axis(side = 4, las = 2)
   
   box() # Put Bar Plot into box
 }
