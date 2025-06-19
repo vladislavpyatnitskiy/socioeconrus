@@ -1,6 +1,6 @@
 bar.plt.soc.fert <- function(x){ # Bar Plot of Fertility Rates
   
-  df <- as.numeric(x[,3]) # Numeric values
+  df <- as.numeric(x[,"Fertility Rate"]) # Numeric values
   
   names(df) <- x[,1] # Give region names
   
@@ -13,8 +13,14 @@ bar.plt.soc.fert <- function(x){ # Bar Plot of Fertility Rates
         "#403367","#da8a6d","#a79cd4","#71482c","#c689d0","#6b2940","#d593a7",
         "#895c8b","#bd5975") # Colours
   
-  B <- barplot(df, las = 2, main = "Regions by Fertility Rate per Woman",
-               ylim = c(min(df) - .1, max(df) + .1), xpd = F, col = C) 
+  B <- barplot(
+    df,
+    las = 2,
+    main = "Regions by Fertility Rate per Woman",
+    ylim = c(min(df) - .1, max(df) + .1),
+    xpd = F,
+    col = C
+    ) 
   
   grid(nx = 1, ny = NULL, col = "grey", lty = 3, lwd = 1) # Horizontal lines
   abline(v = B, col = "grey", lty = 3) # Put vertical lines
@@ -22,10 +28,21 @@ bar.plt.soc.fert <- function(x){ # Bar Plot of Fertility Rates
   cols = c("red", "green", "blue") # Colours
   vals = list(list(mean(df), median(df), 2.1), cols) # Mean, Median & Rep rate
   
-  legend(x = "bottom", inset = c(0, -.55), cex=.85, bty = "n", horiz=T, xpd=T,
-         legend = c((sprintf("Mean: %s", round(mean(df), 2))),
-                    sprintf("Median: %s", round(median(df), 2)),
-                    sprintf("Replacement Rate: %s", 2.1)), col=cols, pch=15) 
+  legend(
+    x = "bottom",
+    inset = c(0, -.85),
+    cex = .85,
+    bty = "n",
+    horiz = T,
+    xpd = T,
+    col = cols,
+    pch = 15,
+    legend = c(
+      sprintf("Mean: %s", round(mean(df), 2)),
+      sprintf("Median: %s", round(median(df), 2)),
+      sprintf("Replacement Rate: %s", 2.1)
+      )
+    ) 
   
   par(mar = c(12, 4, 3, 4)) # Define borders of the plot
   
