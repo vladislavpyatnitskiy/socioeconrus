@@ -12,6 +12,8 @@ bar.plt.soc.fert <- function(x){ # Bar Plot of Fertility Rates
         "#55baad","#dc4555","#62aad3","#8c3025","#417d61","#862977","#bba672",
         "#403367","#da8a6d","#a79cd4","#71482c","#c689d0","#6b2940","#d593a7",
         "#895c8b","#bd5975") # Colours
+
+  par(mar = c(12, 4, 3, 4)) # Define borders of the plot
   
   B <- barplot(
     df,
@@ -43,8 +45,6 @@ bar.plt.soc.fert <- function(x){ # Bar Plot of Fertility Rates
       sprintf("Replacement Rate: %s", 2.1)
       )
     ) 
-  
-  par(mar = c(12, 4, 3, 4)) # Define borders of the plot
   
   for (n in 1:3){ abline(h = vals[[1]][[n]], col = vals[[2]][n], lwd = 3) }
   
