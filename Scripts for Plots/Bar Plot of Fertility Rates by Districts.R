@@ -19,6 +19,8 @@ bar.plt.soc.group.f <- function(x){ # Fertility Rates by Districts
         "#895c8b","#bd5975") # Colours
   
   v <- sort(v, decreasing = T) # Sort values
+
+  par(mar = rep(4, 4))
   
   B <- barplot(v, las = 1, ylim = c(round(min(v),1), round(max(v),1)), xpd = F,
                col=C, main = "Fertility Rate across Federal Districts") # Plot
@@ -36,7 +38,6 @@ bar.plt.soc.group.f <- function(x){ # Fertility Rates by Districts
   
   axis(side = 4, las = 2) # Right y-axis
   
-  par(mar = c(4, 4, 4, 4))
   box() # Put Bar Plot into box
 }
 bar.plt.soc.group.f(fer.ru.df) 
