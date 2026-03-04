@@ -15,6 +15,8 @@ bar.plt.soc.group.y.diff <- function(x){ # Difference in life expectancy
         "#895c8b","#bd5975") # Colours
   
   v <- sort(v, decreasing = T) # Sort values
+
+  par(mar = c(6, rep(4, 3))) # Define borders of the plot
   
   B <- barplot(v, las = 1, ylim = c(min(v) - 1, max(v) + 1), xpd = F, col = C,
                main = "Difference of Life Expectancy across Federal Districts", 
@@ -34,8 +36,6 @@ bar.plt.soc.group.y.diff <- function(x){ # Difference in life expectancy
   for (n in 1:2){ abline(h = vals[n], col = cols[n], lwd = 3) }
   
   axis(side = 4, las = 2) # Right y-axis
-  
-  par(mar = c(6, 4, 4, 4)) # Define borders of the plot
   
   box() # Put Bar Plot into box
 }
