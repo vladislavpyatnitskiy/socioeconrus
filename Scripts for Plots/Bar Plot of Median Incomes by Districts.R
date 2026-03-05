@@ -19,6 +19,8 @@ bar.plt.soc.group.i <- function(x){ # Median Income across Federal Districts
         "#895c8b","#bd5975") # Colours
   
   v <- sort(v, decreasing = T) # Sort values
+
+  par(mar = rep(4, 4)) # Define borders of the plot
   
   B <- barplot(
     v,
@@ -49,8 +51,6 @@ bar.plt.soc.group.i <- function(x){ # Median Income across Federal Districts
       sprintf("Median: US$ %s", round(median(v), 2))
       )
     )
-  
-  par(mar = c(4, 4, 4, 4)) # Define borders of the plot
   
   for (n in 1:2){ abline(h = vals[[n]], col = cols[n], lwd = 3) }
   
