@@ -19,6 +19,8 @@ bar.plt.soc.group.y <- function(x){ # Life Expectancy across Federal Districts
         "#895c8b","#bd5975") # Colours
   
   v <- sort(v, decreasing = T) # Sort values
+
+  par(mar = rep(4, 4)) # Define borders of the plot
   
   B <- barplot(v, las = 1, ylim = c(min(v) - 1, max(v) + 1), xpd = F, col = C,
                main = "Bar Plot of Life Expectancy across Federal Districts") 
@@ -35,8 +37,6 @@ bar.plt.soc.group.y <- function(x){ # Life Expectancy across Federal Districts
          col = c("red", "green"), xpd = T, pch = 15)
   
   axis(side = 4, las = 2) # Right Y-axis
-  
-  par(mar = c(4, 4, 4, 4)) # Define borders of the plot
   
   box() # Put Bar Plot into box
 }
