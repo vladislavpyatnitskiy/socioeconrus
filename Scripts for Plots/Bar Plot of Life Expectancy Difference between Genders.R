@@ -14,6 +14,8 @@ bar.plt.soc.dif <- function(x){ # Life Expectancy across Regions
         "#895c8b","#bd5975") # Colours
   
   v <- sort(v, decreasing = T) # Sort values
+
+  par(mar = c(12, rep(3, 3))) # Define borders of the plot
   
   B <- barplot(v, las = 2, ylim = c(min(v) - 1, max(v) + 1), xpd = F, col = C,
                main = "Life Expectancy Difference between Female & Male")
@@ -29,8 +31,6 @@ bar.plt.soc.dif <- function(x){ # Life Expectancy across Regions
          col = c("red", "green"), xpd = T, pch = 15)
   
   axis(side = 4, las = 2) # Right y-axis
-  
-  par(mar = c(12, 3, 3, 3)) # Define borders of the plot
   
   box() # Put Bar Plot into box
 }
