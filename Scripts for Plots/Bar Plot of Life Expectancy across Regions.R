@@ -14,6 +14,8 @@ bar.plt.soc.y <- function(x){ # Life Expectancy across Regions
         "#895c8b","#bd5975") # Colours
   
   v <- sort(v, decreasing = T) # Sort values
+
+  par(mar = c(12, 4.5, 3, 4.5)) # Define borders of the plot
   
   B <- barplot(v, las = 2, ylim = c(min(v) - 1, max(v) + 1), xpd = F, col = C,
                main = "Bar Plot of Life Expectancy across Regions") 
@@ -31,8 +33,6 @@ bar.plt.soc.y <- function(x){ # Life Expectancy across Regions
   for (n in 1:2){ abline(h = vals[[n]], col = cols[n], lwd = 3) }
   
   axis(side = 4, las = 2)
-  
-  par(mar = c(12, 4.5, 3, 4.5)) # Define borders of the plot
   
   box() # Put Bar Plot into box
 }
