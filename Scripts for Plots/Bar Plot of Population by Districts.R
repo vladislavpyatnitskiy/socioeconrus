@@ -16,6 +16,8 @@ bar.plt.soc.group <- function(x){ # Bar Plot of Population by Districts
         "#55baad","#dc4555","#62aad3","#8c3025","#417d61","#862977","#bba672",
         "#403367","#da8a6d","#a79cd4","#71482c","#c689d0","#6b2940","#d593a7",
         "#895c8b","#bd5975") # Colours
+
+  par(mar = rep(4, 4)) # Define borders of the plot
   
   B <- barplot(
     pct,
@@ -25,8 +27,6 @@ bar.plt.soc.group <- function(x){ # Bar Plot of Population by Districts
     xpd = F,
     main = "Population among Federal Districts in millions"
     )
-  
-  par(mar = rep(4, 4)) # Define borders of the plot
   
   grid(nx = 1, ny = NULL, col = "grey", lty = 3, lwd = 1) # Horizontal lines
   abline(v = B, col = "grey", lty = 3) # Put vertical lines
