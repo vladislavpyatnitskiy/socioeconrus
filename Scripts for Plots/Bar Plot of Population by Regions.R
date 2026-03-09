@@ -12,6 +12,8 @@ bar.plt.soc.pop <- function(x){ # Bar Plot of Region Populations
         "#55baad","#dc4555","#62aad3","#8c3025","#417d61","#862977","#bba672",
         "#403367","#da8a6d","#a79cd4","#71482c","#c689d0","#6b2940","#d593a7",
         "#895c8b","#bd5975") # Colours
+
+  par(mar = c(12, 4, 3, 4)) # Define borders of the plot
   
   B <- barplot(
     df,
@@ -52,8 +54,6 @@ bar.plt.soc.pop <- function(x){ # Bar Plot of Region Populations
   for (n in 1:2){ abline(h = vals[[n]], col = cols[n], lwd = 3) }
   
   axis(side = 4, las = 2)
-  
-  par(mar = c(12, 4, 3, 4)) # Define borders of the plot
   
   box() # Put borders
 }
