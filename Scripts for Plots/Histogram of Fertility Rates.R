@@ -4,6 +4,8 @@ hist.plt.fert <- function(x){ # Histogram Plot of Fertility by Regions
   
   s.min <- min(x) # Minimum value
   s.max <- max(x) # Maximum value
+
+  par(mar = rep(4, 4)) # Define borders of the plot
   
   hist(
     x,
@@ -32,8 +34,6 @@ hist.plt.fert <- function(x){ # Histogram Plot of Fertility by Regions
     col = "red3",
     lwd = 3
     )
-  
-  par(mar = rep(4, 4)) # Define borders of the plot
   
   box() # Define borders
 }
