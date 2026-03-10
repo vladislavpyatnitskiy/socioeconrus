@@ -4,6 +4,8 @@ hist.plt.year <- function(x){ # Histogram Plot of Regions by Life Expectancy
   
   s.min <- min(x) # Minimum value
   s.max <- max(x) # Maximum value
+
+  par(mar = rep(4, 4)) # Define borders of the plot
   
   hist(
     x,
@@ -31,8 +33,6 @@ hist.plt.year <- function(x){ # Histogram Plot of Regions by Life Expectancy
     col = "red3",
     lwd = 3
     ) # Add Normal Distribution
-  
-  par(mar = rep(4, 4)) # Define borders of the plot
   
   box() # Define borders
 }
