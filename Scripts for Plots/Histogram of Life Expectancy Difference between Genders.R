@@ -4,6 +4,8 @@ hist.plt.y.diff <- function(x){ # Histogram Plot of Life Expectancy Difference
   
   s.min <- min(x) # Minimum value
   s.max <- max(x) # Maximum value
+
+  par(mar = rep(3, 4)) # Define borders of the plot
   
   hist(
     x,
@@ -31,8 +33,6 @@ hist.plt.y.diff <- function(x){ # Histogram Plot of Life Expectancy Difference
     col = "red3",
     lwd = 3
     ) # Normal Distribution
-  
-  par(mar = c(3, 3, 3, 3)) # Define borders of the plot
   
   box() # Define borders
 }
