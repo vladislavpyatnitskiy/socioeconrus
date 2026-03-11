@@ -4,6 +4,8 @@ hist.plt.pop <- function(x){ # Histogram Plot of Population
   
   s.min <- min(x) # Minimum value
   s.max <- max(x) # Maximum value
+
+  par(mar = rep(4, 4)) # Define borders of the plot
   
   hist(
     x,
@@ -31,8 +33,6 @@ hist.plt.pop <- function(x){ # Histogram Plot of Population
     col = "red3",
     lwd = 2
     ) # Add Normal Distribution
-  
-  par(mar = rep(4, 4)) # Define borders of the plot
   
   box() # Define borders
 }
