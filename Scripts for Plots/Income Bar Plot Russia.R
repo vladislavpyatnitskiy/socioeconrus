@@ -12,6 +12,8 @@ bar.plt.soc <- function(x){ # Bar Plot of Population's Monthly Income
         "#55baad","#dc4555","#62aad3","#8c3025","#417d61","#862977","#bba672",
         "#403367","#da8a6d","#a79cd4","#71482c","#c689d0","#6b2940","#d593a7",
         "#895c8b","#bd5975") # Colours
+
+  par(mar = c(10, 4, 3, 4)) # Define borders of the plot
   
   B <- barplot(
     df,
@@ -21,8 +23,6 @@ bar.plt.soc <- function(x){ # Bar Plot of Population's Monthly Income
     ylim = c(min(df) * .95, max(df) * 1.05),
     xpd = F
     )
-  
-  par(mar = c(10, 4, 3, 4)) # Define borders of the plot
   
   grid(nx = 1, ny = NULL, col = "grey", lty = 3, lwd = 1) # Horizontal lines
   abline(v = B, col = "grey",lty = 3) # Vertical lines
