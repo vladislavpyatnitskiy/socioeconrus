@@ -35,6 +35,8 @@ hist.plt.soc.age.gender <- function(x){ # Histogram by Age and Gender
   
   s.min <- min(df.bar) # Minimum value
   s.max <- max(df.bar) # Maximum value
+
+  par(mar = rep(4, 4)) # Define borders of the plot
   
   hist(df.bar, freq=T, xlab="Population in millions", border="white", las = 1, 
        col = "steelblue", main = "Population's Distribution by Age & Gender",
@@ -43,8 +45,6 @@ hist.plt.soc.age.gender <- function(x){ # Histogram by Age and Gender
   abline(h = 0, col = "black") # Add vertical line at y = 0
   axis(side = 2, at = seq(1, 100, 1), las = 2) # Set y-axis values
   axis(side = 4, at = seq(0, 100, 1), las = 2) # Set y-axis values
-  
-  par(mar = c(4, 4, 4, 4)) # Define borders of the plot
   
   for (n in seq(1, 100, 1)){ abline(v = n, col = "grey", lty = 3)  # y-axis
    abline(h = n, col = "grey", lty = 3) } 
