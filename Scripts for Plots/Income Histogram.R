@@ -4,6 +4,8 @@ hist.plt.income <- function(x){ # Histogram Plot of Regions by Income
   
   s.min <- min(x) # Value minimum
   s.max <- max(x) # Value maximum
+
+  par(mar = rep(4, 4)) # Define borders of the plot
   
   hist(
     x,
@@ -24,8 +26,6 @@ hist.plt.income <- function(x){ # Histogram Plot of Regions by Income
   abline(h = 0) # Add vertical line at y = 0
   
   axis(side = 4, las = 2) # Right Y-axis
-  
-  par(mar = rep(4, 4)) # Define borders of the plot
   
   R <- seq(s.min, s.max, by = 1) # Range
   
