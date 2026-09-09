@@ -1,6 +1,18 @@
-pie.plt.gender <- function(x){ # Pie Plot showing gender portions
+# Pie Plot showing gender portions
+pie.plt.gender <- function(year=NULL, country=NULL, name=NULL, radius=1){ 
   
-  f <- read.csv2(file = url(x)) # Download CSV file from website
+  if (is.null(year)) year = format(Sys.Date(), "%Y")
+  if (is.null(country)) country = "643"
+  
+  # Download CSV file from website
+  f <- read.csv2(
+    file = url(
+      sprintf(
+        "https://www.populationpyramid.net/api/pp/%s/%s/?csv=true",
+        country, year
+        )
+      )
+    ) 
   
   df <- NULL # name for data frame
   
@@ -16,7 +28,15 @@ pie.plt.gender <- function(x){ # Pie Plot showing gender portions
   
   df <- round(colSums(df, na.rm = T) / sum(df), 4) * 100 # sum for each gender
   
-  pie(df, labels = c(sprintf("%s %s%%", names(df), df)), radius = 1.7,
-      col = c("navy", "darkred"), main = "Russia's Gender Portion")
+  if (is.null(name)) main = "Gender Portion" 
+  else main = sprintf("%s's Gender Portion", name)
+  
+  pie(
+    df, 
+    labels = c(sprintf("%s %s%%", names(df), df)), 
+    radius = radius,
+    col = c("navy", "darkred"),
+    main = main
+    )
 }
-pie.plt.gender("https://www.populationpyramid.net/api/pp/643/2020/?csv=true")
+pie.plt.gender(name="Russia")
